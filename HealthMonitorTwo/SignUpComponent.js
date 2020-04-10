@@ -22,11 +22,14 @@ export default class SignUpComponent extends React.Component{
     this.state={
       check_textInputChange: false,
       password:'',
-      secureTextEntry: true
+      secureTextEntry: true,
+      email: ''
     }
   }
 
+
   textInputChange(value){
+    this.email = value
     if(value.length !== 0){
       this.setState({
         check_textInputChange: true
@@ -44,6 +47,8 @@ export default class SignUpComponent extends React.Component{
       secureTextEntry: !this.state.secureTextEntry
     })
   }
+
+
 
   render(){
     return(
