@@ -22,11 +22,37 @@ export default class SignInComponent extends React.Component{
     this.state={
       check_textInputChange: false,
       password:'',
+      passcode: '',
+      username: '',
       secureTextEntry: true
     }
   }
 
+  async validateUser(){
+    console.log(this.username)
+    console.log(this.passcode)
+    try {
+      let res = await fetch(
+        'http://localhost:3000/user/login', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "username":this.username,
+            "password":this.passcode
+          }),
+        }
+      );
+    }
+    catch (error){
+    console.error(error);
+    }
+  }
+
   textInputChange(value){
+    this.username = value;
     if(value.length !== 0){
       this.setState({
         check_textInputChange: true
@@ -37,6 +63,14 @@ export default class SignInComponent extends React.Component{
         check_textInputChange: false
       });
     }
+  }
+
+  passwordInputChange(value){
+    this.passcode = value
+    this.setState({
+      password:value
+    })
+
   }
 
   secureTextEntry(){
@@ -87,9 +121,7 @@ export default class SignInComponent extends React.Component{
             <TextInput placeholder="Your password here." style={styles.textInput}
               secureTextEntry={true}
               value={this.state.password}
-              onChangeText={(text) =>this.setState({
-                password:text
-              })}
+              onChangeText={(text) =>this.passwordInputChange(text)}
             />
             :
             <TextInput placeholder="Your password here." style={styles.textInput}
@@ -117,11 +149,16 @@ export default class SignInComponent extends React.Component{
 
           </View>
           <Text style={{color:'#009bd1', marginTop:40}}> Forgot Password? </Text>
-          <View style={styles.button}>
-            <LinearGradient colors={['#4c669f','#3b5998']}
-            style={styles.signIn}>
-              <Text style={styles.submit}>LOG IN</Text>
-            </LinearGradient>
+
+
+            <View style={styles.button}>
+              <LinearGradient colors={['#4c669f','#3b5998']}
+              style={styles.signIn}>
+                <TouchableOpacity
+                  onPress={()=>this.validateUser()}>
+                  <Text style={styles.submit}>LOG IN</Text>
+                </TouchableOpacity>
+              </LinearGradient>
 
 
             <TouchableOpacity

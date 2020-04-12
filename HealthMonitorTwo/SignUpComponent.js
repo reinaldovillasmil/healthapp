@@ -23,9 +23,45 @@ export default class SignUpComponent extends React.Component{
       check_textInputChange: false,
       password:'',
       secureTextEntry: true,
-      email: ''
+      email: '',
+      passcode: ''
     }
   }
+
+    async registerUser(){
+      try {
+        let res = await fetch(
+          'http://localhost:3000/user', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "username":this.email,
+              "password":this.passcode
+            }),
+          }
+        );
+      }
+      catch (error){
+      console.error(error);
+      }
+    }
+
+      async getData(){
+        try {
+          let res = await fetch(
+            'http://localhost:3000/users',
+          );
+        let json = await res.json();
+        console.log(json);
+        return json.data;
+        }
+        catch (error){
+        console.error(error);
+        }
+      }
 
 
   textInputChange(value){
@@ -40,6 +76,14 @@ export default class SignUpComponent extends React.Component{
         check_textInputChange: false
       });
     }
+  }
+
+  passwordInputChange(value){
+    this.passcode = value
+    this.setState({
+      password:value
+    })
+
   }
 
   secureTextEntry(){
@@ -91,14 +135,10 @@ export default class SignUpComponent extends React.Component{
           {this.state.secureTextEntry ?
             <TextInput placeholder="Your password here." style={styles.textInput}
               secureTextEntry={true}
-              value={this.state.password}
-              onChangeText={(text) =>this.setState({
-                password:text
-              })}
+              onChangeText={(text) => this.passwordInputChange(text)}
             />
             :
             <TextInput placeholder="Your password here." style={styles.textInput}
-              value={this.state.password}
               onChangeText={(text) =>this.setState({
                 password:text
               })}
@@ -131,14 +171,12 @@ export default class SignUpComponent extends React.Component{
           {this.state.secureTextEntry ?
             <TextInput placeholder="Confirm password here." style={styles.textInput}
               secureTextEntry={true}
-              value={this.state.password}
               onChangeText={(text) =>this.setState({
                 password:text
               })}
             />
             :
             <TextInput placeholder="Confirm password here." style={styles.textInput}
-              value={this.state.password}
               onChangeText={(text) =>this.setState({
                 password:text
               })}
@@ -163,13 +201,16 @@ export default class SignUpComponent extends React.Component{
           </View>
 
 
-
-          <View style={styles.button}>
-            <LinearGradient colors={['#4c669f','#3b5998']}
-            style={styles.signIn}>
-              <Text style={styles.submit}>Sign Up</Text>
-            </LinearGradient>
-          </View>
+          <TouchableOpacity
+            onPress={() => this.registerUser()}
+          >
+            <View style={styles.button}>
+              <LinearGradient colors={['#4c669f','#3b5998']}
+              style={styles.signIn}>
+                <Text style={styles.submit}>Sign Up</Text>
+              </LinearGradient>
+            </View>
+          </TouchableOpacity>
         </Animatable.View>
       </View>
     )
