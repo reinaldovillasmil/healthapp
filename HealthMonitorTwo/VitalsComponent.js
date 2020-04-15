@@ -5,8 +5,10 @@ import {
   StyleSheet,
   StatusBar,
   Dimensions,
+  TextInput,
   TouchableOpacity
 } from "react-native";
+import {CalendarList} from 'react-native-calendars';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -44,6 +46,82 @@ export default class HomeComponent extends React.Component{
         animation="fadeInUpBig"
         duration={1500}
         >
+        <View style={{flex:1}}>
+          <CalendarList
+            pastScrollRange={50}
+            futureScrollRange={50}
+            scrollEnabled={true}
+            horizontal={true}
+            showScrollIndicator={true}
+            onDayPress={(day) => {console.log('selected day', day)}}
+            />
+        </View>
+
+        <View style={{flex: 1, paddingTop: 40, width: '100%'}}>
+
+          <View style={{alignItems: 'flex-end', paddingVertical:20}}>
+            <Text style={{color:'#05375a', fontStyle: 'italic'}}>*Ideal Weight: 165</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Weight:</Text>
+            <View style={{paddingHorizontal: 5}}></View>
+            <TextInput
+              style={styles.textInput}
+               placeholder="Enter your weight for specified date."
+            />
+          </View>
+
+          <View style={{paddingVertical: 15}}></View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Pulse:</Text>
+            <View style={{paddingHorizontal: 5}}></View>
+            <TextInput
+              style={styles.textInput}
+               placeholder="Enter your weight for specified date."
+            />
+          </View>
+
+          <View style={{paddingVertical: 15}}></View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Pressure:</Text>
+            <View style={{paddingHorizontal: 5}}></View>
+            <TextInput
+              style={styles.textInput}
+               placeholder="Blood Pressure for specified date."
+            />
+          </View>
+
+          <View style={{alignItems: 'flex-end', paddingTop:20}}>
+            <View style={{flexDirection: 'row'}}>
+            <Text style={{color:'#05375a', fontStyle: 'italic'}}>Initals:</Text>
+            <TextInput
+                style={{width:'25%', paddingLeft:3, backgroundColor: 'white'}}
+                 placeholder="Initials"
+            />
+            </View>
+          </View>
+
+
+
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableOpacity
+          style={[styles.signIn,{
+            borderColor:'#4dc2f8',
+            borderWidth:1,
+            marginTop:15
+          }]}>
+
+            <Text style={[styles.submit2],{color :'#4dc2f8'}}>
+            Submit
+            </Text>
+          </TouchableOpacity>
+          </View>
+
+
+        </View>
 
         </Animatable.View>
 
@@ -70,33 +148,25 @@ var styles = StyleSheet.create({
     borderTopRightRadius:30,
     paddingVertical: 50,
     paddingHorizontal:50,
-  },
-  logo: {
-    width: height_logo,
-    height: height_logo
+    alignItems: 'flex-start'
   },
   logo2: {
     width: 140,
     height: 140
   },
-  SquareShape:{
-    width:140,
-    height: 140,
-    backgroundColor:'#05375a',
-    borderTopLeftRadius:30,
-    borderTopRightRadius:30,
-    borderBottomRightRadius:30,
-    borderBottomLeftRadius:30
+  textInput:{
+    textAlign:'right'
+
   },
-  BigRectangle: {
-    width: 320,
-    height: 200,
-    backgroundColor:'white',
-    borderColor: '#05375a',
-    borderWidth: 5,
-    borderTopLeftRadius:30,
-    borderTopRightRadius:30,
-    borderBottomRightRadius:30,
-    borderBottomLeftRadius:30
+  button:{
+    alignItems:'center',
+    marginTop:20
+  },
+  signIn:{
+    width: '80%',
+    height: 50,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10,
   }
 });
