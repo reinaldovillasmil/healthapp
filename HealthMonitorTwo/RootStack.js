@@ -5,6 +5,7 @@ import SplashComponent from "./SplashComponent.js";
 import SignInComponent from "./SignInComponent";
 import SignUpComponent from "./SignUpComponent";
 import HomeComponent from "./HomeComponent"
+import VitalsComponent from "./VitalsComponent"
 
 const StackNavigator = createStackNavigator({
   SplashScreen: {
@@ -31,6 +32,12 @@ const StackNavigator = createStackNavigator({
         headerShown: false
       }
   },
+  VitalsScreen: {
+    screen: VitalsComponent,
+    navigationOptions: {
+      headerShown: false
+    }
+  }
 });
 
 export default createAppContainer(StackNavigator);

@@ -21,7 +21,7 @@ export default class HomeComponent extends React.Component{
         <StatusBar barStyle="light-content" />
 
         <View style={styles.header}>
-          <View style={{paddingVertical:70, paddingLeft: 10}}>
+          <View style={{paddingVertical:90, paddingLeft: 20}}>
             <Animatable.Image
               animation="bounceIn"
               duration={3000}
@@ -29,8 +29,13 @@ export default class HomeComponent extends React.Component{
               style={styles.logo}
               reziseMode={"stretch"}/>
           </View>
-          <View style={{paddingHorizontal: 10, alignItems: 'flex-end', justifyContent: 'center'}}>
-            <Text style={{fontSize:40, color: 'white',fontWeight: 'bold'}}>Health Portal</Text>
+          <View style ={{flexDirection: 'column', paddingTop: 110, paddingLeft: 10}}>
+            <View style={{alignItems: 'flex-end', justifyContent: 'center'}}>
+              <Text style={{fontSize:40, color: 'white',fontWeight: 'bold'}}>Health Portal</Text>
+            </View>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={{fontSize:16, color: 'white',fontWeight: 'bold'}}>Make a selection below.</Text>
+            </View>
           </View>
         </View>
 
@@ -50,32 +55,47 @@ export default class HomeComponent extends React.Component{
               <Text>Medication</Text>
           </View>
 
-          <View style={{paddingHorizontal:20}}></View>
-          <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              <Animatable.Image
-                animation="bounceIn"
-                duration={2200}
-                source={require('HealthMonitorTwo/src/asset/256.png')}
-                style={styles.logo2}
-                reziseMode={"stretch"}/>
-              <Text>Vitals</Text>
-          </View>
+        <View style={{paddingHorizontal:20}}></View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("VitalsScreen")}>
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/heart2.jpg')}
+                  style={styles.logo2}
+                  reziseMode={"stretch"}/>
+                <Text>Vitals</Text>
+            </View>
+          </TouchableOpacity>
+
         </View>
 
         <View style={{paddingVertical:20}}></View>
 
         <View style={{flexDirection: 'row'}}>
-          <Animatable.View
-          animation="bounceIn"
-          style={styles.SquareShape}
-          duration={2200}
-          ></Animatable.View>
+
+          <View style={{flexDirection: 'column', alignItems: 'center'}}>
+            <Animatable.Image
+            animation="bounceIn"
+            style={styles.logo2}
+            source={require('HealthMonitorTwo/src/asset/fever.png')}
+            duration={2200}
+            />
+          <Text>Symptom Tracker</Text>
+        </View>
+
           <View style={{paddingHorizontal:20}}></View>
-          <Animatable.View
-          animation="bounceIn"
-          style={styles.SquareShape}
-          duration={2200}
-          ></Animatable.View>
+
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <Animatable.Image
+              animation="bounceIn"
+              style={styles.logo2}
+              source={require('HealthMonitorTwo/src/asset/book.png')}
+              duration={2200}
+              />
+            <Text>Journal</Text>
+          </View>
+
         </View>
 
         <View style={{paddingVertical:20}}></View>
