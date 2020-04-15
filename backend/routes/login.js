@@ -4,24 +4,48 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-router.post('/', async (req, res) => {
+// router.post('/', async (req, res) =>{
+//   const userFound = await User.find({'username': req.body.username});
+//   if(userFound.length <= 0){
+//     return res.status(400).send('Cannot find user')
+//   }
+//   await bcrypt.compare(req.body.password, userFound[0].password, async function(err, res) {
+//   if (err){
+//     // handle error
+//   }
+//   if (res){
+//     // Send JWT
+//     console.log("my boy we are in and validated")
+//     userFound[0].token = "yerrrr"
+//     await userFound[0].save()
+//
+//   } else {
+//     // response is OutgoingMessage object that server response http request
+//     console.log("Incorrect password or username. Please try again")
+//   }
+// });
+//   res.send(200,"we good")
+// });
+//
+
+//logins user into the application, also sends the token for authorization purposes.
+router.post('/', async (req, res) =>{
   const userFound = await User.find({'username': req.body.username});
   if(userFound.length <= 0){
     return res.status(400).send('Cannot find user')
   }
-  bcrypt.compare(req.body.password, userFound[0].password, function(err, res) {
-  if (err){
-    // handle error
+  const match = await bcrypt.compare(req.body.password, userFound[0].password)
+  if(match){
+    res.send(200)
+     userFound[0].token = "yerrrr"
+     const newPost = await userFound[0].save()
+     res.json(newPost)
   }
-  if (res){
-    // Send JWT
-    console.log("my boy we are in and validated")
-  } else {
-    // response is OutgoingMessage object that server response http request
-    console.log("Incorrect password or username. Please try again")
+  else{
+      console.log("Incorrect password or username. Please try again")
   }
-});
 
 });
+
 
 module.exports = router;

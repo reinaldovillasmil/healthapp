@@ -19,18 +19,44 @@ export default class SignInComponent extends React.Component{
 
   constructor(props){
     super(props);
+    var token: ''
     this.state={
       check_textInputChange: false,
       password:'',
       passcode: '',
       username: '',
-      secureTextEntry: true
+      secureTextEntry: true,
     }
   }
 
+  async getUserData(){
+    try {
+      let res = await fetch(
+        'http://localhost:3000/user', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            "username":this.username,
+          }),
+        }
+      );
+    let json = await res.json();
+    if (json[0].token != null) {
+      this.props.navigation.navigate("HomeScreen")
+    }
+    return json;
+    }
+    catch (error){
+    console.error(error);
+    }
+
+  }
+
+
   async validateUser(){
-    console.log(this.username)
-    console.log(this.passcode)
     try {
       let res = await fetch(
         'http://localhost:3000/user/login', {
@@ -45,6 +71,9 @@ export default class SignInComponent extends React.Component{
           }),
         }
       );
+      let text = await res.text()
+      console.log("Validation" + text)
+      const temp = await this.getUserData()
     }
     catch (error){
     console.error(error);

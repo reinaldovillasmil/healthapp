@@ -31,7 +31,7 @@ export default class SignUpComponent extends React.Component{
     async registerUser(){
       try {
         let res = await fetch(
-          'http://localhost:3000/user', {
+          'http://localhost:3000/user/register', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -48,21 +48,6 @@ export default class SignUpComponent extends React.Component{
       console.error(error);
       }
     }
-
-      async getData(){
-        try {
-          let res = await fetch(
-            'http://localhost:3000/users',
-          );
-        let json = await res.json();
-        console.log(json);
-        return json.data;
-        }
-        catch (error){
-        console.error(error);
-        }
-      }
-
 
   textInputChange(value){
     this.email = value
@@ -99,7 +84,7 @@ export default class SignUpComponent extends React.Component{
       <View style={styles.container}>
 
         <View style={styles.header}>
-          <Text style={styles.text_header}>Welcome, sign in below!</Text>
+          <Text style={styles.text_header}>Sign up below!</Text>
         </View>
 
         <Animatable.View
