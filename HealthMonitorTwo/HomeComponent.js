@@ -89,18 +89,18 @@ export default class HomeComponent extends React.Component{
         >
         <View style={{alignItems: 'center'}}>
           <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:18, color: 'white', fontWeight:'bold'}}> Health Information</Text>
+          <Text style={{fontSize:18, color: '#05375a', fontWeight:'bold'}}> Health Information</Text>
         </View>
         <View style={{alignItems: 'flex-start', padding: 12}}>
-          <Text style={{fontSize:14, color: 'white', fontWeight:'bold'}}> Patient: Ullyses S. Grant</Text>
+          <Text style={{fontSize:14, color: '#05375a', fontWeight:'bold'}}> Patient: Ullyses S. Grant</Text>
           <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color: 'white', fontWeight:'bold'}}> Primary Doctor: Robert J. Martin Md </Text>
+          <Text style={{fontSize:14, color: '#05375a', fontWeight:'bold'}}> Primary Doctor: Robert J. Martin Md </Text>
           <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'white', fontWeight:'bold'}}> Healthcare: FloridaBlue </Text>
+          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Healthcare: FloridaBlue </Text>
           <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'white', fontWeight:'bold'}}> Medications: Metroplol, Aspirin, hydroxychloroquine </Text>
+          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Medications: Metroplol, Aspirin, hydroxychloroquine </Text>
           <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'white', fontWeight:'bold'}}> Next Visit: June 3rd, 2020 </Text>
+          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Next Visit: June 3rd, 2020 </Text>
 
 
 
@@ -156,7 +156,9 @@ var styles = StyleSheet.create({
   BigRectangle: {
     width: 320,
     height: 200,
-    backgroundColor:'#05375a',
+    backgroundColor:'white',
+    borderColor: '#05375a',
+    borderWidth: 5,
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
     borderBottomRightRadius:30,
