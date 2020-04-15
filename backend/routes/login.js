@@ -1,4 +1,6 @@
+require('dotenv').config()
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -36,16 +38,19 @@ router.post('/', async (req, res) =>{
   }
   const match = await bcrypt.compare(req.body.password, userFound[0].password)
   if(match){
-    res.send(200)
+    const token = jwt.sign(userFound[0].username, process.env.ACCESS_TOKEN_SECRET)
      userFound[0].token = "yerrrr"
      const newPost = await userFound[0].save()
-     res.json(newPost)
+     res.json(token)
+     res.sendStatus(200).send(token)
+
   }
   else{
       console.log("Incorrect password or username. Please try again")
   }
 
 });
+
 
 
 module.exports = router;

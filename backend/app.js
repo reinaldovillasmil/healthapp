@@ -1,10 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const userRoute = require('./routes/user');
 const app = express();
 const bodyParser = require('body-parser');
+const userRoute = require('./routes/user');
 
-app.use(express.json())
 app.use(express.json())
 app.use('/user', userRoute);
 
@@ -16,5 +15,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("connected to db!")
 });
+
+
 
 app.listen(3000);
