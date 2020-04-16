@@ -29,13 +29,11 @@ export default class HomeComponent extends React.Component{
               style={styles.logo}
               reziseMode={"stretch"}/>
           </View>
-          <View style ={{flexDirection: 'column', paddingTop: 110, paddingLeft: 10}}>
+          <View style ={{flexDirection: 'column', paddingTop: 130, paddingLeft: 10}}>
             <View style={{alignItems: 'flex-end', justifyContent: 'center'}}>
               <Text style={{fontSize:40, color: 'white',fontWeight: 'bold'}}>Health Portal</Text>
             </View>
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{fontSize:16, color: 'white',fontWeight: 'bold'}}>Make a selection below.</Text>
-            </View>
+
           </View>
         </View>
 
@@ -44,7 +42,12 @@ export default class HomeComponent extends React.Component{
         animation="fadeInUpBig"
         duration={1500}
         >
-        <View style={{flexDirection: 'row'}}>
+
+
+
+
+        <View style={{flexDirection: 'row', paddingTop: 20}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("MedicationScreen")}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <Animatable.Image
                 animation="bounceIn"
@@ -54,6 +57,8 @@ export default class HomeComponent extends React.Component{
                 reziseMode={"stretch"}/>
               <Text>Medication</Text>
           </View>
+        </TouchableOpacity>
+
 
         <View style={{paddingHorizontal:20}}></View>
           <TouchableOpacity onPress={() => this.props.navigation.navigate("VitalsScreen")}>
@@ -61,7 +66,7 @@ export default class HomeComponent extends React.Component{
                 <Animatable.Image
                   animation="bounceIn"
                   duration={2200}
-                  source={require('HealthMonitorTwo/src/asset/heart2.jpg')}
+                  source={require('HealthMonitorTwo/src/asset/hello.png')}
                   style={styles.logo2}
                   reziseMode={"stretch"}/>
                 <Text>Vitals</Text>
@@ -100,33 +105,38 @@ export default class HomeComponent extends React.Component{
 
         <View style={{paddingVertical:20}}></View>
 
-
-        <Animatable.View
-        animation="bounceIn"
-        duration={2200}
-        >
-        <View style={styles.BigRectangle}
-        >
-        <View style={{alignItems: 'center'}}>
-          <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:18, color: '#05375a', fontWeight:'bold'}}> Health Information</Text>
-        </View>
-        <View style={{alignItems: 'flex-start', padding: 12}}>
-          <Text style={{fontSize:14, color: '#05375a', fontWeight:'bold'}}> Patient: Ullyses S. Grant</Text>
-          <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color: '#05375a', fontWeight:'bold'}}> Primary Doctor: Robert J. Martin Md </Text>
-          <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Healthcare: FloridaBlue </Text>
-          <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Medications: Metroplol, Aspirin, hydroxychloroquine </Text>
-          <View style={{paddingVertical:4}}></View>
-          <Text style={{fontSize:14, color:'#05375a', fontWeight:'bold'}}> Next Visit: June 3rd, 2020 </Text>
+          <View style={{flexDirection: 'row', paddingTop: 20}}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("AccountScreen")}>
+            <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/user.png')}
+                  style={styles.logo2}
+                  reziseMode={"stretch"}/>
+                <Text>User</Text>
+            </View>
+          </TouchableOpacity>
 
 
+          <View style={{paddingHorizontal:20}}></View>
 
-        </View>
-        </View>
-        </Animatable.View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("AccountScreen")}>
+          <View style={{flexDirection: 'column', alignItems: 'center'}}>
+              <Animatable.Image
+                animation="bounceIn"
+                duration={2200}
+                source={require('HealthMonitorTwo/src/asset/news.png')}
+                style={styles.logo2}
+                reziseMode={"stretch"}/>
+              <Text>News</Text>
+          </View>
+          </TouchableOpacity>
+
+
+          </View>
+
+
 
 
 
@@ -149,11 +159,11 @@ var styles = StyleSheet.create({
     flexDirection: "row"
   },
   footer: {
-    flex: 3,
+    flex: 3.75,
     backgroundColor: 'white',
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
-    paddingVertical: 50,
+    paddingVertical: 20,
     paddingHorizontal:50,
   },
   logo: {
@@ -168,17 +178,6 @@ var styles = StyleSheet.create({
     width:140,
     height: 140,
     backgroundColor:'#05375a',
-    borderTopLeftRadius:30,
-    borderTopRightRadius:30,
-    borderBottomRightRadius:30,
-    borderBottomLeftRadius:30
-  },
-  BigRectangle: {
-    width: 320,
-    height: 200,
-    backgroundColor:'white',
-    borderColor: '#05375a',
-    borderWidth: 5,
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
     borderBottomRightRadius:30,

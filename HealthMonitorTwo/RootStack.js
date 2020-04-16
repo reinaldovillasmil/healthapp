@@ -4,8 +4,10 @@ import {createStackNavigator} from "react-navigation-stack";
 import SplashComponent from "./SplashComponent.js";
 import SignInComponent from "./SignInComponent";
 import SignUpComponent from "./SignUpComponent";
-import HomeComponent from "./HomeComponent"
-import VitalsComponent from "./VitalsComponent"
+import HomeComponent from "./HomeComponent";
+import VitalsComponent from "./VitalsComponent";
+import MedicationComponent from "./MedicationComponent";
+import AccountComponent from "./AccountComponent";
 
 const StackNavigator = createStackNavigator({
   SplashScreen: {
@@ -34,6 +36,18 @@ const StackNavigator = createStackNavigator({
   },
   VitalsScreen: {
     screen: VitalsComponent,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  MedicationScreen: {
+    screen: MedicationComponent,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  AccountScreen: {
+    screen: AccountComponent,
     navigationOptions: {
       headerShown: false
     }

@@ -12,10 +12,25 @@ import {CalendarList} from 'react-native-calendars';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Modal from 'react-native-modal';
+import CalendarComponent from "./CalendarComponent"
+
+
 
 export default class HomeComponent extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state={
+      showChild: 'true'
+    };
+  }
 
+  closeChild = () => {
+    this.setState({
+      showChild: 'false'
+    });
+  }
 
   render(){
     return(
@@ -31,9 +46,9 @@ export default class HomeComponent extends React.Component{
               style={styles.logo2}
               reziseMode={"stretch"}/>
           </View>
-          <View style ={{flexDirection: 'column', paddingTop: 90, paddingLeft: 5}}>
+          <View style ={{flexDirection: 'column', paddingTop: 80, paddingLeft: 15}}>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{fontSize:40, color: 'white',fontWeight: 'bold'}}>Vitals Screen</Text>
+              <Text style={{fontSize:54, color: 'white',fontWeight: 'bold'}}>Vitals</Text>
             </View>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Text style={{fontSize:16, color: 'white',fontWeight: 'bold'}}>Make a selection below.</Text>
@@ -46,25 +61,137 @@ export default class HomeComponent extends React.Component{
         animation="fadeInUpBig"
         duration={1500}
         >
-        <View style={{flex:1}}>
-          <CalendarList
-            pastScrollRange={50}
-            futureScrollRange={50}
-            scrollEnabled={true}
-            horizontal={true}
-            showScrollIndicator={true}
-            onDayPress={(day) => {console.log('selected day', day)}}
-            />
+
+
+        <View style={{flex:.25, alignItems: 'center', flexDirection:'row', justifyContent: 'center'}}>
+          <View>
+            <Animatable.Image
+              animation="bounceIn"
+              duration={3000}
+              source={require('HealthMonitorTwo/src/asset/calendarsolid.png')}
+              style={styles.logo3}
+              reziseMode={"stretch"}/>
+          </View>
+          <CalendarComponent></CalendarComponent>
         </View>
 
-        <View style={{flex: 1, paddingTop: 40, width: '100%'}}>
+
+
+
+
+        <View style={{flex:1.1, flexDirection: 'row'}}>
+
+          <View style={{flexDirection: 'column', alignItems: 'center', paddingVertical:20}}>
+
+              <Animatable.Image
+                animation="bounceIn"
+                duration={2200}
+                source={require('HealthMonitorTwo/src/asset/slowheartrate.png')}
+                style={styles.icons}
+                reziseMode={"stretch"}/>
+              <View style={{paddingVertical: 4}}></View>
+              <Text style={styles.iconText}>Slow Heart Rate</Text>
+
+              <View style={{paddingBottom:30}}></View>
+
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/heartrate.png')}
+                  style={styles.icons}
+                  reziseMode={"stretch"}/>
+                <View style={{paddingVertical: 4}}></View>
+                <Text style={styles.iconText}>Fast Heart Rate</Text>
+
+          </View>
+
+          <View style={{paddingHorizontal:10}}></View>
+
+          <View style={{flexDirection: 'column', alignItems: 'center', paddingVertical:20}}>
+              <Animatable.Image
+                animation="bounceIn"
+                duration={2200}
+                source={require('HealthMonitorTwo/src/asset/chestpressure.png')}
+                style={styles.icons}
+                reziseMode={"stretch"}/>
+              <View style={{paddingVertical: 4}}></View>
+              <Text style={styles.iconText}>Chest Pressure</Text>
+
+              <View style={{paddingBottom:30}}></View>
+
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/headache128.png')}
+                  style={styles.icons}
+                  reziseMode={"stretch"}/>
+                <View style={{paddingVertical: 4}}></View>
+                <Text style={styles.iconText}>Headache</Text>
+
+          </View>
+
+          <View style={{paddingHorizontal:10}}></View>
+
+          <View style={{flexDirection: 'column', alignItems: 'center' , paddingVertical:20}}>
+              <Animatable.Image
+                animation="bounceIn"
+                duration={2200}
+                source={require('HealthMonitorTwo/src/asset/shortnessofbreathe.png')}
+                style={styles.icons}
+                reziseMode={"stretch"}/>
+              <View style={{paddingVertical: 4}}></View>
+              <Text style={styles.iconText}>Shortness Breathe</Text>
+
+              <View style={{paddingBottom:30}}></View>
+
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/pain.png')}
+                  style={styles.icons}
+                  reziseMode={"stretch"}/>
+                <View style={{paddingVertical: 4}}></View>
+                <Text style={styles.iconText}>Pain</Text>
+
+          </View>
+
+          <View style={{paddingHorizontal:10}}></View>
+
+          <View style={{flexDirection: 'column', alignItems: 'center' , paddingVertical:20}}>
+              <Animatable.Image
+                animation="bounceIn"
+                duration={2200}
+                source={require('HealthMonitorTwo/src/asset/dizzy.png')}
+                style={styles.icons}
+                reziseMode={"stretch"}/>
+              <View style={{paddingVertical: 4}}></View>
+              <Text style={styles.iconText}>Dizzy</Text>
+
+              <View style={{paddingBottom:30}}></View>
+
+                <Animatable.Image
+                  animation="bounceIn"
+                  duration={2200}
+                  source={require('HealthMonitorTwo/src/asset/fatigue.png')}
+                  style={styles.icons}
+                  reziseMode={"stretch"}/>
+                <View style={{paddingVertical: 4}}></View>
+                <Text style={styles.iconText}>Fatigue</Text>
+
+          </View>
+
+        </View>
+
+
+
+        <View style={{flex: 1.6, paddingTop: 10, width: '100%'}}>
 
           <View style={{alignItems: 'flex-end', paddingVertical:20}}>
-            <Text style={{color:'#05375a', fontStyle: 'italic'}}>*Ideal Weight: 165</Text>
+            <Text style={{color:'black', fontStyle: 'italic'}}>*Ideal Weight: 165</Text>
           </View>
 
           <View style={{flexDirection: 'row'}}>
-            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Weight:</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color: 'black'}}>Weight:</Text>
             <View style={{paddingHorizontal: 5}}></View>
             <TextInput
               style={styles.textInput}
@@ -75,7 +202,7 @@ export default class HomeComponent extends React.Component{
           <View style={{paddingVertical: 15}}></View>
 
           <View style={{flexDirection: 'row'}}>
-            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Pulse:</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color: 'black'}}>Pulse:</Text>
             <View style={{paddingHorizontal: 5}}></View>
             <TextInput
               style={styles.textInput}
@@ -86,7 +213,7 @@ export default class HomeComponent extends React.Component{
           <View style={{paddingVertical: 15}}></View>
 
           <View style={{flexDirection: 'row'}}>
-            <Text style={{fontWeight:'bold', fontSize:20, color: '#05375a'}}>Pressure:</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color: 'black'}}>Pressure:</Text>
             <View style={{paddingHorizontal: 5}}></View>
             <TextInput
               style={styles.textInput}
@@ -96,7 +223,7 @@ export default class HomeComponent extends React.Component{
 
           <View style={{alignItems: 'flex-end', paddingTop:20}}>
             <View style={{flexDirection: 'row'}}>
-            <Text style={{color:'#05375a', fontStyle: 'italic'}}>Initals:</Text>
+            <Text style={{color:'black', fontStyle: 'italic'}}>Initals:</Text>
             <TextInput
                 style={{width:'25%', paddingLeft:3, backgroundColor: 'white'}}
                  placeholder="Initials"
@@ -109,12 +236,12 @@ export default class HomeComponent extends React.Component{
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity
           style={[styles.signIn,{
-            borderColor:'#4dc2f8',
+            borderColor:'black',
             borderWidth:1,
             marginTop:15
           }]}>
 
-            <Text style={[styles.submit2],{color :'#4dc2f8'}}>
+            <Text style={[styles.submit2],{color :'black'}}>
             Submit
             </Text>
           </TouchableOpacity>
@@ -146,13 +273,16 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
-    paddingVertical: 50,
-    paddingHorizontal:50,
-    alignItems: 'flex-start'
+    paddingVertical: 20,
+    paddingHorizontal:30,
   },
   logo2: {
     width: 140,
     height: 140
+  },
+  logo3: {
+    width: 50,
+    height: 50
   },
   textInput:{
     textAlign:'right'
@@ -168,5 +298,14 @@ var styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     borderRadius:10,
+  },
+  icons: {
+    width: 65,
+    height: 65,
+    paddingVertical: 20
+  },
+  iconText: {
+    fontSize: 9,
+    fontWeight: 'bold'
   }
 });

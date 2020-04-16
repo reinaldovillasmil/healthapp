@@ -30,29 +30,29 @@ export default class SignInComponent extends React.Component{
   }
 
   async getUserData(){
-    try {
-      let res = await fetch(
-        'http://localhost:3000/user', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            "username":this.username,
-          }),
-        }
-      );
-    let json = await res.json();
-    if (json[0].token != null) {
-      this.props.navigation.navigate("HomeScreen")
-    }
-    return json;
-    }
-    catch (error){
-    console.error(error);
-    }
-    //this.props.navigation.navigate("HomeScreen")
+    // try {
+    //   let res = await fetch(
+    //     'http://localhost:3000/user', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         "username":this.username,
+    //       }),
+    //     }
+    //   );
+    // let json = await res.json();
+    // if (json[0].token != null) {
+    //   this.props.navigation.navigate("HomeScreen")
+    // }
+    // return json;
+    // }
+    // catch (error){
+    // console.error(error);
+    // }
+    this.props.navigation.navigate("HomeScreen")
 
   }
 
