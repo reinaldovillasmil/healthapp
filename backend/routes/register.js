@@ -8,8 +8,7 @@ const saltRounds = 10;
 router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
-    password: req.body.password,
-    token: ' '
+    password: req.body.password
   });
   try{
     console.log(user)

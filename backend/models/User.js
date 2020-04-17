@@ -9,6 +9,9 @@ const UserSchema = mongoose.Schema({
   },
   token: {
     type: String
+  },
+  motive: {
+    type: String
   }
 });
 
