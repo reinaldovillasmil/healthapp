@@ -9,6 +9,10 @@ import VitalsComponent from "./VitalsComponent";
 import MedicationComponent from "./MedicationComponent";
 import AccountComponent from "./AccountComponent";
 
+import * as Animatable from 'react-native-animatable';
+
+
+
 const StackNavigator = createStackNavigator({
   SplashScreen: {
       screen: SplashComponent,
@@ -31,7 +35,12 @@ const StackNavigator = createStackNavigator({
   HomeScreen: {
       screen: HomeComponent,
       navigationOptions: {
-        headerShown: false
+        headerShown: false,
+        tabBarIcon: () => <Animatable.Image
+          animation="bounceIn"
+          duration={3000}
+          source={require('HealthMonitorTwo/src/asset/logo3.png')}
+          reziseMode={"stretch"}/>
       }
   },
   VitalsScreen: {

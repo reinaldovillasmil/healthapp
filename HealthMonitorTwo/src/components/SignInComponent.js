@@ -12,6 +12,8 @@ import Feather from "react-native-vector-icons/Feather";
 import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 
@@ -19,6 +21,7 @@ export default class SignInComponent extends React.Component{
 
   constructor(props){
     super(props);
+    this.checkForSession();
     var token: ''
     this.state={
       check_textInputChange: false,
@@ -54,8 +57,21 @@ export default class SignInComponent extends React.Component{
     catch (error){
     console.error(error);
     }
-    // this.props.navigation.navigate("HomeScreen")
 
+  }
+
+  checkForSession = async () => {
+    try {
+      const value = await AsyncStorage.getItem('username')
+      if(value !== null) {
+      // value previously stored
+        this.props.navigation.navigate("HomeScreen")
+        this.setState({username : value})
+        console.log("yoooo" + value)
+      }
+    } catch(e) {
+      // error reading value
+      }
   }
 
 
@@ -76,10 +92,14 @@ export default class SignInComponent extends React.Component{
       );
       let text = await res.text()
       const temp = await this.getUserData()
+      await AsyncStorage.setItem('username', this.username)
+
     }
     catch (error){
     console.error(error);
     }
+     this.props.navigation.navigate("HomeScreen")
+
   }
 
   textInputChange(value){
@@ -128,8 +148,9 @@ export default class SignInComponent extends React.Component{
               color='#05375a'
               size={20}
             />
-            <TextInput placeholder="Your email here." style={styles.textInput}
+          <TextInput style={styles.textInput}
               onChangeText={(text)=>this.textInputChange(text)}
+              value={this.username}
             />
           {this.state.check_textInputChange ?
             <Animatable.View
@@ -214,6 +235,8 @@ export default class SignInComponent extends React.Component{
     )
   }
 }
+
+
 
 
 var styles = StyleSheet.create({

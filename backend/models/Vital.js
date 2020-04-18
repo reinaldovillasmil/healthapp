@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const VitalSchema = mongoose.Schema({
-  username:{
+  userID:{
     type: String
   },
   weight: {
@@ -10,10 +10,9 @@ const VitalSchema = mongoose.Schema({
   pulse: {
     type: String
   },
-  ,
   heartrate: {
     type: String
   }
 });
 
-module.exports = mongoose.model('Vital', UserSchema);
+module.exports = mongoose.model('Vital', VitalSchema);

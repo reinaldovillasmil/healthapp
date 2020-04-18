@@ -5,7 +5,7 @@ const User = require('../models/User');
 const logInRoute = require('../routes/login.js');
 const registerRoute = require('../routes/register.js');
 const vitalRoute = require('../routes/vitals.js');
-router.use('/entervitals', vitalRoute);
+router.use('/vitals', vitalRoute);
 router.use('/login', logInRoute);
 router.use('/register', registerRoute);
 const bcrypt = require('bcrypt');

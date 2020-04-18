@@ -11,6 +11,8 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+
+
 export default class HomeComponent extends React.Component{
 
 
@@ -95,10 +97,10 @@ export default class HomeComponent extends React.Component{
               <Animatable.Image
               animation="bounceIn"
               style={styles.logo2}
-              source={require('HealthMonitorTwo/src/asset/book.png')}
+              source={require('HealthMonitorTwo/src/asset/news.png')}
               duration={2200}
               />
-            <Text>Journal</Text>
+            <Text>News</Text>
           </View>
 
         </View>
@@ -114,7 +116,7 @@ export default class HomeComponent extends React.Component{
                   source={require('HealthMonitorTwo/src/asset/user.png')}
                   style={styles.logo2}
                   reziseMode={"stretch"}/>
-                <Text>User</Text>
+                <Text>Profile</Text>
             </View>
           </TouchableOpacity>
 
@@ -126,10 +128,10 @@ export default class HomeComponent extends React.Component{
               <Animatable.Image
                 animation="bounceIn"
                 duration={2200}
-                source={require('HealthMonitorTwo/src/asset/news.png')}
+                source={require('HealthMonitorTwo/src/asset/settings.png')}
                 style={styles.logo2}
                 reziseMode={"stretch"}/>
-              <Text>News</Text>
+              <Text>Settings</Text>
           </View>
           </TouchableOpacity>
 

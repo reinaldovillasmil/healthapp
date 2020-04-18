@@ -24,7 +24,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import RootStack from "./RootStack";
+
+
+import RootStack from "./src/components/RootStack";
+
 
 export default class App extends React.Component{
   render(){
