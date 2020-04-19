@@ -5,15 +5,45 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  Button,
+  Dimensions
 } from "react-native";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
+import TabBar from './TabBar.js';
+import Modal from 'react-native-modal';
+import {
+  LineChart
+} from 'react-native-chart-kit'
+
+
 
 export default class SignInComponent extends React.Component{
+
+
+
+  line = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      datasets: [
+        {
+          data: [162,167,163,168,172,174,175,164,165,165],
+          strokeWidth: 4, // optional
+        },
+      ],
+    };
+
+
+  state = {
+    isModalVisible: false,
+  };
+
+  toggleModal = () => {
+    this.setState({isModalVisible: !this.state.isModalVisible});
+  };
 
 
   render(){
@@ -29,7 +59,7 @@ export default class SignInComponent extends React.Component{
             style={styles.logo2}
             reziseMode={"stretch"}/>
         </View>
-        <View style ={{flexDirection: 'column', paddingTop: 110, paddingLeft: 20}}>
+        <View style ={{flexDirection: 'column', paddingTop: 90, paddingLeft: 20}}>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{fontSize:52, color: 'white',fontWeight: 'bold'}}>Account</Text>
           </View>
@@ -70,101 +100,109 @@ export default class SignInComponent extends React.Component{
               <View style={{paddingVertical:10}}></View>
 
 
-              <View style={{flexDirection:'column', paddingVertical: 10, borderWidth: 5, borderTopLeftRadius:30,
-              borderTopRightRadius:30,
-              borderBottomRightRadius:30,
-              borderBottomLeftRadius:30}}>
+                <View style={{flexDirection:'column', paddingVertical: 10, borderWidth: 5, borderTopLeftRadius:30,
+                borderTopRightRadius:30,
+                borderBottomRightRadius:30,
+                borderBottomLeftRadius:30
+              }}>
 
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> Account Setting</Text>
-                    <View style={{paddingLeft:70}}></View>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/settings.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={this.toggleModal}>
+                    <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
+                    <Text style={{fontSize:30}}> Weight</Text>
+                      <View style={{paddingLeft:160, justifyContent:'flex-end'}}></View>
+                      <Animatable.Image
+                        animation="bounceIn"
+                        duration={3000}
+                        source={require('HealthMonitorTwo/src/asset/weight.png')}
+                        style={styles.logo3}
+                        reziseMode={"stretch"}/>
+                        <Modal isVisible={this.state.isModalVisible}>
+                          <View style={{alignItems:'center'}} >
+                            <Text style={{fontSize:32, fontWeight:'bold', color:'white'}}>
+                              Weight Chart
+                            </Text>
+                            <LineChart
+                              data={this.line}
+                              width={Dimensions.get('window').width-30}
+                              height={320}
+                              yAxisLabel={'lbs '}
+                              chartConfig={{
+                                backgroundColor: '#05375a',
+                                backgroundGradientFrom: '#05390a',
+                                backgroundGradientTo: '#05389a',
+                                decimalPlaces: 0, // optional, defaults to 2dp
+                                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                style: {
+                                  borderRadius: 16
+                                }
+                              }}
+                              bezier
+                              style={{
+                                marginVertical: 8,
+                                borderRadius: 16,
+                              }}
+                            />
+                          </View>
+                            <Button title="Close" onPress={this.toggleModal} />
+                        </Modal>
+                    </View>
 
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> Privacy & Safety</Text>
-                    <View style={{paddingLeft:65}}></View>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/privacy.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
+                  </TouchableOpacity>
 
-
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> Notifications</Text>
-                    <View style={{paddingLeft:112}}></View>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/notification.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
-
-
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> Report a bug</Text>
-                    <View style={{paddingLeft:110}}></View>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/bug.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
-
-
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> FAQ</Text>
-                    <View style={{paddingLeft:215}}></View>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/FAQ.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                    <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
+                    <Text style={{fontSize:30}}> Pulse</Text>
+                      <View style={{paddingLeft:180}}></View>
+                      <Animatable.Image
+                        animation="bounceIn"
+                        duration={3000}
+                        source={require('HealthMonitorTwo/src/asset/privacy.png')}
+                        style={styles.logo3}
+                        reziseMode={"stretch"}/>
+                    </View>
+                  </TouchableOpacity>
 
 
-                  <TouchableOpacity>
-                  <View style={{flexDirection:'row',paddingVertical:15, alignItems:'flex-end', justifyContent:'flex-end', paddingHorizontal:10}}>
-                  <Text style={{fontSize:30}}> Logout</Text>
-                    <Animatable.Image
-                      animation="bounceIn"
-                      duration={3000}
-                      source={require('HealthMonitorTwo/src/asset/logout.png')}
-                      style={styles.logo3}
-                      reziseMode={"stretch"}/>
-                  </View>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                    <View style={{flexDirection:'row',paddingVertical:15, borderBottomWidth:1, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
+                    <Text style={{fontSize:30}}> Heart Rate</Text>
+                      <View style={{paddingLeft:112}}></View>
+                      <Animatable.Image
+                        animation="bounceIn"
+                        duration={3000}
+                        source={require('HealthMonitorTwo/src/asset/notification.png')}
+                        style={styles.logo3}
+                        reziseMode={"stretch"}/>
+                    </View>
+                  </TouchableOpacity>
 
 
-
-
-
-
+                    <TouchableOpacity>
+                    <View style={{flexDirection:'row',paddingVertical:15, borderColor:'black', alignItems:'center', paddingHorizontal:10}}>
+                    <Text style={{fontSize:30}}> Symptoms</Text>
+                      <View style={{paddingLeft:110}}></View>
+                      <Animatable.Image
+                        animation="bounceIn"
+                        duration={3000}
+                        source={require('HealthMonitorTwo/src/asset/bug.png')}
+                        style={styles.logo3}
+                        reziseMode={"stretch"}/>
+                    </View>
+                  </TouchableOpacity>
 
 
 
-              </View>
+
+
+
+
+
+
+
+                </View>
+
+
+              <TabBar></TabBar>
 
             </Animatable.View>
 
@@ -183,7 +221,7 @@ var styles = StyleSheet.create({
     flexDirection: "row"
   },
   footer: {
-    flex: 4,
+    flex: 4.9,
     backgroundColor: 'white',
     borderTopLeftRadius:30,
     borderTopRightRadius:30,
@@ -191,8 +229,8 @@ var styles = StyleSheet.create({
     paddingHorizontal:30,
   },
   logo2: {
-    width: 130,
-    height: 130
+    width: 100,
+    height: 100
   },
   logo3: {
     width: 30,

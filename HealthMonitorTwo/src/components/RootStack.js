@@ -8,6 +8,11 @@ import HomeComponent from "./HomeComponent";
 import VitalsComponent from "./VitalsComponent";
 import MedicationComponent from "./MedicationComponent";
 import AccountComponent from "./AccountComponent";
+import SettingComponent from "./SettingsComponent";
+import SymptomComponent from "./SymptomComponent";
+import TabBar from "./TabBar";
+
+
 
 import * as Animatable from 'react-native-animatable';
 
@@ -57,6 +62,24 @@ const StackNavigator = createStackNavigator({
   },
   AccountScreen: {
     screen: AccountComponent,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  SettingScreen: {
+    screen: SettingComponent,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  Tab: {
+    screen: TabBar,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  SymptomScreen: {
+    screen: SymptomComponent,
     navigationOptions: {
       headerShown: false
     }

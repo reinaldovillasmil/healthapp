@@ -6,7 +6,8 @@ import {
   StatusBar,
   Dimensions,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import {CalendarList} from 'react-native-calendars';
 import * as Animatable from 'react-native-animatable';
@@ -14,6 +15,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Modal from 'react-native-modal';
 import CalendarComponent from "./CalendarComponent"
+
+import TabBar from './TabBar.js';
+
 
 
 
@@ -38,7 +42,7 @@ export default class HomeComponent extends React.Component{
         <StatusBar barStyle="light-content" />
 
         <View style={styles.header}>
-          <View style={{paddingVertical:50}}>
+          <View style={{paddingVertical:40}}>
             <Animatable.Image
               animation="bounceIn"
               duration={3000}
@@ -46,13 +50,11 @@ export default class HomeComponent extends React.Component{
               style={styles.logo2}
               reziseMode={"stretch"}/>
           </View>
-          <View style ={{flexDirection: 'column', paddingTop: 80, paddingLeft: 15}}>
+          <View style ={{flexDirection: 'column', paddingTop: 90, paddingLeft: 35}}>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <Text style={{fontSize:54, color: 'white',fontWeight: 'bold'}}>Vitals</Text>
             </View>
-            <View style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{fontSize:16, color: 'white',fontWeight: 'bold'}}>Make a selection below.</Text>
-            </View>
+
           </View>
         </View>
 
@@ -250,6 +252,8 @@ export default class HomeComponent extends React.Component{
 
         </View>
 
+        <TabBar></TabBar>
+
         </Animatable.View>
 
     </View>
@@ -269,7 +273,7 @@ var styles = StyleSheet.create({
     flexDirection: "row"
   },
   footer: {
-    flex: 3.9,
+    flex: 4.5,
     backgroundColor: 'white',
     borderTopLeftRadius:30,
     borderTopRightRadius:30,

@@ -11,7 +11,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
+import TabBar from './TabBar.js';
 
 export default class HomeComponent extends React.Component{
 
@@ -23,7 +23,7 @@ export default class HomeComponent extends React.Component{
         <StatusBar barStyle="light-content" />
 
         <View style={styles.header}>
-          <View style={{paddingVertical:90, paddingLeft: 20}}>
+          <View style={{paddingVertical:50, paddingLeft: 20}}>
             <Animatable.Image
               animation="bounceIn"
               duration={3000}
@@ -31,7 +31,7 @@ export default class HomeComponent extends React.Component{
               style={styles.logo}
               reziseMode={"stretch"}/>
           </View>
-          <View style ={{flexDirection: 'column', paddingTop: 130, paddingLeft: 10}}>
+          <View style ={{flexDirection: 'column', paddingTop: 80, paddingLeft: 10}}>
             <View style={{alignItems: 'flex-end', justifyContent: 'center'}}>
               <Text style={{fontSize:40, color: 'white',fontWeight: 'bold'}}>Health Portal</Text>
             </View>
@@ -48,7 +48,7 @@ export default class HomeComponent extends React.Component{
 
 
 
-        <View style={{flexDirection: 'row', paddingTop: 20}}>
+        <View style={{flexDirection: 'row', paddingTop: 10}}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate("MedicationScreen")}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <Animatable.Image
@@ -80,7 +80,7 @@ export default class HomeComponent extends React.Component{
         <View style={{paddingVertical:20}}></View>
 
         <View style={{flexDirection: 'row'}}>
-
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("SymptomScreen")}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
             <Animatable.Image
             animation="bounceIn"
@@ -90,6 +90,8 @@ export default class HomeComponent extends React.Component{
             />
           <Text>Symptom Tracker</Text>
         </View>
+        </TouchableOpacity>
+
 
           <View style={{paddingHorizontal:20}}></View>
 
@@ -123,7 +125,7 @@ export default class HomeComponent extends React.Component{
 
           <View style={{paddingHorizontal:20}}></View>
 
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("AccountScreen")}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("SettingScreen")}>
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
               <Animatable.Image
                 animation="bounceIn"
@@ -138,8 +140,7 @@ export default class HomeComponent extends React.Component{
 
           </View>
 
-
-
+          <TabBar></TabBar>
 
 
         </Animatable.View>
@@ -161,7 +162,7 @@ var styles = StyleSheet.create({
     flexDirection: "row"
   },
   footer: {
-    flex: 3.75,
+    flex: 5,
     backgroundColor: 'white',
     borderTopLeftRadius:30,
     borderTopRightRadius:30,

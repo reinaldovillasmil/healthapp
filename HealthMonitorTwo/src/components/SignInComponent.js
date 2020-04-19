@@ -76,28 +76,28 @@ export default class SignInComponent extends React.Component{
 
 
   async validateUser(){
-    try {
-      let res = await fetch(
-        'http://localhost:3000/user/login', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            "username":this.username,
-            "password":this.passcode
-          }),
-        }
-      );
-      let text = await res.text()
-      const temp = await this.getUserData()
-      await AsyncStorage.setItem('username', this.username)
-
-    }
-    catch (error){
-    console.error(error);
-    }
+    // try {
+    //   let res = await fetch(
+    //     'http://localhost:3000/user/login', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         "username":this.username,
+    //         "password":this.passcode
+    //       }),
+    //     }
+    //   );
+    //   let text = await res.text()
+    //   const temp = await this.getUserData()
+    //   await AsyncStorage.setItem('username', this.username)
+    //
+    // }
+    // catch (error){
+    // console.error(error);
+    // }
      this.props.navigation.navigate("HomeScreen")
 
   }

@@ -5,7 +5,6 @@
  * @format
  * @flow
  */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -33,6 +32,7 @@ export default class App extends React.Component{
   render(){
     return(
       <RootStack/>
+
     )
   }
 }

@@ -27,7 +27,7 @@ export default class CalendarComponent extends React.Component {
 
   render() {
     return (
-      <View style={styles.footer}>
+      <View>
       <Button title="Calendar" onPress={this.toggleModal}>
         <Text>Calendar</Text>
       </Button>
